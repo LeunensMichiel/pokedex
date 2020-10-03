@@ -1,8 +1,6 @@
 <div class="row">
-  <div class="col-sm-6">
-    <img src="{{ pokemon.sprites.front_default }}" />
-  </div>
-  <div class="col-sm-6">
+  <div *ngFor="let pokemon of pokemons.results" class="col-sm-2">
+    <img src="{{ pokemon.details.sprites.front_default }}" />
     <h2>{{ pokemon.name }}</h2>
   </div>
 </div>

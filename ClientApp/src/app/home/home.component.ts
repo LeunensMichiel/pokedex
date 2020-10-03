@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Pokemon } from "../models/pokemon";
+import { Pokemon, Results, PokeAPI } from "../models/pokemon";
 import { PokemonService } from "./../services/pokemon.service";
 
 @Component({
@@ -8,17 +8,39 @@ import { PokemonService } from "./../services/pokemon.service";
   styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit {
-  pokemon: Pokemon;
+  pokemons: PokeAPI;
 
   constructor(private pokeService: PokemonService) {
-    this.showPokemon();
+    this.getPokemons();
   }
 
   ngOnInit() {}
 
-  showPokemon() {
+  getPokemons(): void {
+    this.pokeService.getAllPokemon().subscribe((data: PokeAPI) => {
+      this.pokemons = data;
+
+      if (this.pokemons.results && this.pokemons.results.length) {
+        this.pokemons.results.forEach((pokemon) => {
+          // // set pokemon id
+          // pokemon.id = pokemon.url.split('/')[
+          //   pokemon.url.split('/').length - 2
+          // ];
+          this.getSinglePokemon(pokemon);
+        });
+      }
+    });
+  }
+
+  getSinglePokemon(pokemon: Results) {
     this.pokeService
-      .getSinglePokemon()
-      .subscribe((pokemon) => (this.pokemon = pokemon));
+      .getSinglePokemon(pokemon.name)
+      .subscribe((poke: Pokemon) => {
+        pokemon.details = poke;
+        // if (pokemon.id === '151') {
+        //   this.pokemonsLoaded = true;
+        //   this.exportPokemons.emit(this.pokemons.results);
+        // }
+      });
   }
 }
