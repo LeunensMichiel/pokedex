@@ -1,11 +1,17 @@
 import { Component, OnInit } from "@angular/core";
-import { Pokemon, Results, PokeAPI } from "../models/pokemon";
+import {
+  Pokemon,
+  Results,
+  PokeAPI,
+  Type,
+  TYPE_COLOURS,
+} from "../models/pokemon";
 import { PokemonService } from "./../services/pokemon.service";
 
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.css"],
+  styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent implements OnInit {
   pokemons: PokeAPI;
@@ -42,5 +48,11 @@ export class HomeComponent implements OnInit {
         //   this.exportPokemons.emit(this.pokemons.results);
         // }
       });
+  }
+
+  getTypeColor(type: string) {
+    if (type) {
+      return TYPE_COLOURS[type];
+    }
   }
 }
