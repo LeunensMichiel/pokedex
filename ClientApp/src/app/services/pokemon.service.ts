@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Observable, throwError } from "rxjs";
+import { Observable, of, throwError } from "rxjs";
 import { catchError, retry } from "rxjs/operators";
 import { environment } from "./../../environments/environment";
 import { Pokemon, Results, PokeAPI } from "../models/pokemon";
@@ -17,7 +17,7 @@ export class PokemonService {
 
   getAllPokemon() {
     return this.http
-      .get<PokeAPI>(`${this.pokeAPI}?limit=151`)
+      .get<PokeAPI>(`${this.pokeAPI}?limit=386`)
       .pipe(catchError(this._handleError));
   }
 
