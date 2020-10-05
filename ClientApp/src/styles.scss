@@ -9,4 +9,18 @@
 
 body {
   font-family: "VT323", monospace;
+  background: url("/assets/images/constellation-light.svg");
+  position: relative;
+
+  &:after {
+    content: "";
+    background: linear-gradient(68.66deg, #e1e1e6 0%, #ffffff 100%);
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.33;
+  }
 }

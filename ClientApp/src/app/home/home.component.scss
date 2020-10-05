@@ -17,6 +17,14 @@
   border-radius: 12px;
   position: relative;
   overflow: hidden;
+  transition: transform 0.2s ease-out, border 0.2s ease-in;
+  border: 1px solid transparent;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-4px);
+    border: 1px solid #cacace;
+  }
 }
 
 h2 {
