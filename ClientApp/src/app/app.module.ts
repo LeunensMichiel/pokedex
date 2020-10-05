@@ -7,7 +7,7 @@ import { RouterModule } from "@angular/router";
 import { AppComponent } from "./app.component";
 import { NavMenuComponent } from "./nav-menu/nav-menu.component";
 import { HomeComponent } from "./home/home.component";
-import { PokesearchComponent } from './pokesearch/pokesearch.component';
+import { PokesearchComponent } from "./pokesearch/pokesearch.component";
 
 @NgModule({
   declarations: [
@@ -15,8 +15,6 @@ import { PokesearchComponent } from './pokesearch/pokesearch.component';
     NavMenuComponent,
     HomeComponent,
     PokesearchComponent,
-    // CounterComponent,
-    // FetchDataComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
