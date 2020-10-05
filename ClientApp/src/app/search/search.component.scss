@@ -1,0 +1,33 @@
+.input__container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 300px;
+  padding: 12px;
+  margin-bottom: 24px;
+  border-radius: 4px;
+  background-color: #e3e3e8;
+
+  &:focus-within {
+    outline: 2px solid #3b3b3d;
+  }
+}
+
+input {
+  width: 98%;
+  border: none;
+  background-image: none;
+  background-color: transparent;
+  box-shadow: none;
+  font-family: "VT323", monospace;
+  font-size: 24px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+img {
+  width: 24px;
+  height: 24px;
+}

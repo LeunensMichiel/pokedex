@@ -1,7 +1,11 @@
 <div class="loading" *ngIf="!pokemonsLoaded">LOADING POKEMON....</div>
 
+<app-search (searchChange)="onSearchChanged($event)"></app-search>
 <div class="poke__grid">
-  <div *ngFor="let pokemon of pokemons.results" class="poke__card">
+  <div
+    *ngFor="let pokemon of pokemons.results | pokesearch: searchText"
+    class="poke__card"
+  >
     <img src="/assets/images/pokeball.webp" class="poke__card--bg" />
 
     <h2>{{ pokemon.details.name }}</h2>

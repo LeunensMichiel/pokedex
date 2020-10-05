@@ -1,0 +1,11 @@
+<div class="input__container">
+  <input
+    type="search"
+    class="search-input"
+    aria-describedby="search-text"
+    [(ngModel)]="searchString"
+    (ngModelChange)="onSearch(searchString)"
+    placeholder="search by name"
+  />
+  <img src="/assets/images/searchIcon.svg" />
+</div>

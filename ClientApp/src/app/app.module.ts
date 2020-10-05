@@ -7,14 +7,16 @@ import { RouterModule } from "@angular/router";
 import { AppComponent } from "./app.component";
 import { NavMenuComponent } from "./nav-menu/nav-menu.component";
 import { HomeComponent } from "./home/home.component";
-import { PokesearchComponent } from "./pokesearch/pokesearch.component";
+import { SearchPipe } from "./pipes/search.pipe";
+import { SearchComponent } from "./search/search.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    PokesearchComponent,
+    SearchPipe,
+    SearchComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),

@@ -16,6 +16,7 @@ import { PokemonService } from "./../services/pokemon.service";
 export class HomeComponent implements OnInit {
   pokemons: PokeAPI;
   pokemonsLoaded: boolean;
+  searchText = "";
 
   constructor(private pokeService: PokemonService) {}
 
@@ -51,6 +52,12 @@ export class HomeComponent implements OnInit {
   getTypeColor(type: string) {
     if (type) {
       return TYPE_COLOURS[type];
+    }
+  }
+
+  onSearchChanged(searchString: string) {
+    if (searchString !== this.searchText) {
+      this.searchText = searchString;
     }
   }
 }

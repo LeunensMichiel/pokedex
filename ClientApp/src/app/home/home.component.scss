@@ -38,6 +38,7 @@ h5 {
   width: 96px;
   height: 96px;
   margin: 8px 0;
+  user-select: none;
 }
 
 .poke__card--bg {
@@ -49,6 +50,7 @@ h5 {
   left: -33px;
   transform: rotate(-45deg);
   z-index: 0;
+  pointer-events: none;
 }
 
 ul {
