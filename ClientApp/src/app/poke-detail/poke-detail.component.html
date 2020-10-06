@@ -1,0 +1,43 @@
+<div class="flex-container">
+  <img
+    src="{{ pokemon.sprites.other['official-artwork'].front_default }}"
+    alt="{{ pokemon.name }}"
+  />
+  <div class="flex-container-column">
+    <h2>{{ pokemon.name }}</h2>
+    <p>The {{ getEnglishGenus().genus }}</p>
+    <div class="dex__info">
+      <table>
+        <tr>
+          <th>National No.</th>
+          <td>{{ ("0000" + pokemon.id).slice(-3) }}</td>
+        </tr>
+        <tr>
+          <th>Type</th>
+          <td>
+            <ul class="type">
+              <li
+                *ngFor="let type of pokemon.types"
+                [ngStyle]="{ 'background-color': getTypeColor(type.type.name) }"
+              >
+                {{ type.type.name }}
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>Species</th>
+          <td>{{ getEnglishGenus().genus }}</td>
+        </tr>
+        <tr>
+          <th>Height</th>
+          <td>{{ pokemon.height / 10 }} m</td>
+        </tr>
+        <tr>
+          <th>Weight</th>
+          <td>{{ pokemon.weight / 10 }} kg</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

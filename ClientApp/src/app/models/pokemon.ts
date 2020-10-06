@@ -36,6 +36,8 @@ export interface Results {
 export interface Pokemon {
   id: number;
   name: string;
+  weight: number;
+  height: number;
   sprites: Sprites;
   abilities?: Array<any>;
   types?: Types[];
@@ -60,6 +62,23 @@ export interface Types {
 }
 
 export interface Type {
+  name: string;
+  url: string;
+}
+
+export interface Species {
+  base_happiness: number;
+  name: string;
+  id: number;
+  genera: Genera[];
+}
+
+export interface Genera {
+  genus: string;
+  language: Language;
+}
+
+export interface Language {
   name: string;
   url: string;
 }

@@ -9,6 +9,7 @@ import { NavMenuComponent } from "./nav-menu/nav-menu.component";
 import { HomeComponent } from "./home/home.component";
 import { SearchPipe } from "./pipes/search.pipe";
 import { SearchComponent } from "./search/search.component";
+import { PokeDetailComponent } from "./poke-detail/poke-detail.component";
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { SearchComponent } from "./search/search.component";
     HomeComponent,
     SearchPipe,
     SearchComponent,
+    PokeDetailComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
@@ -24,8 +26,7 @@ import { SearchComponent } from "./search/search.component";
     FormsModule,
     RouterModule.forRoot([
       { path: "", component: HomeComponent, pathMatch: "full" },
-      // { path: 'counter', component: CounterComponent },
-      // { path: 'fetch-data', component: FetchDataComponent },
+      { path: "pokemon/:name", component: PokeDetailComponent },
     ]),
   ],
   providers: [],

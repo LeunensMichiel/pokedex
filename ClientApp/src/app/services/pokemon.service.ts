@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Observable, of, throwError } from "rxjs";
 import { catchError, retry } from "rxjs/operators";
 import { environment } from "./../../environments/environment";
-import { Pokemon, Results, PokeAPI } from "../models/pokemon";
+import { Pokemon, Results, PokeAPI, Species } from "../models/pokemon";
 
 @Injectable({
   providedIn: "root",
@@ -17,13 +17,19 @@ export class PokemonService {
 
   getAllPokemon() {
     return this.http
-      .get<PokeAPI>(`${this.pokeAPI}?limit=386`)
+      .get<PokeAPI>(`${this.pokeAPI}/pokemon/?limit=386`)
       .pipe(catchError(this._handleError));
   }
 
   getSinglePokemon(name) {
     return this.http
-      .get<Pokemon>(`${this.pokeAPI}/${name}`)
+      .get<Pokemon>(`${this.pokeAPI}/pokemon/${name}`)
+      .pipe(catchError(this._handleError));
+  }
+
+  getPokemonSpecies(name) {
+    return this.http
+      .get<Species>(`${this.pokeAPI}/pokemon-species/${name}`)
       .pipe(catchError(this._handleError));
   }
 
