@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Observable, of, throwError } from "rxjs";
-import { catchError, retry } from "rxjs/operators";
+import { forkJoin, throwError } from "rxjs";
+import { catchError, map, mergeMap, switchMap } from "rxjs/operators";
 import { environment } from "./../../environments/environment";
-import { Pokemon, Results, PokeAPI, Species } from "../models/pokemon";
+import { Pokemon, EvoChain, PokeAPI, Species } from "../models/pokemon";
 
 @Injectable({
   providedIn: "root",
@@ -17,7 +17,7 @@ export class PokemonService {
 
   getAllPokemon() {
     return this.http
-      .get<PokeAPI>(`${this.pokeAPI}/pokemon/?limit=386`)
+      .get<PokeAPI>(`${this.pokeAPI}/pokemon/?limit=151`)
       .pipe(catchError(this._handleError));
   }
 
@@ -31,6 +31,25 @@ export class PokemonService {
     return this.http
       .get<Species>(`${this.pokeAPI}/pokemon-species/${name}`)
       .pipe(catchError(this._handleError));
+  }
+
+  getEvolutionChain(id) {
+    return this.http
+      .get<EvoChain>(`${this.pokeAPI}/evolution-chain/${id}`)
+      .pipe(catchError(this._handleError));
+  }
+
+  getPokemonSpeciesWithEvolutionChainAndPokemon(name) {
+    const species = this.getPokemonSpecies(name);
+    const evolutions = species.pipe(
+      switchMap((spe) =>
+        this.getEvolutionChain(spe.evolution_chain.url.split("/").slice(-2)[0])
+      )
+    );
+    const firstPokemon = evolutions.pipe(
+      switchMap((evo) => this.getSinglePokemon(evo.chain.species.name))
+    );
+    return forkJoin([species, evolutions, firstPokemon]);
   }
 
   private _handleError(error: HttpErrorResponse) {

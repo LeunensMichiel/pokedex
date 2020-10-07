@@ -3,25 +3,25 @@
 <app-search (searchChange)="onSearchChanged($event)"></app-search>
 <div class="poke__grid">
   <a
-    *ngFor="let pokemon of pokemons.results | pokesearch: searchText"
+    *ngFor="let pokemon of pokemons?.results | pokesearch: searchText"
     class="poke__card"
-    routerLink="/pokemon/{{ pokemon.details.name }}"
+    routerLink="/pokemon/{{ pokemon?.details?.name }}"
   >
     <img src="/assets/images/pokeball.webp" class="poke__card--bg" />
 
-    <h2>{{ pokemon.details.name }}</h2>
-    <h5>no. {{ ("0000" + pokemon.details.id).slice(-3) }}</h5>
+    <h2>{{ pokemon?.details?.name }}</h2>
+    <h5>no. {{ ("0000" + pokemon?.details?.id).slice(-3) }}</h5>
     <img
-      src="{{ pokemon.details.sprites.front_default }}"
-      alt="{{ pokemon.details.name }}"
+      src="{{ pokemon?.details?.sprites?.front_default }}"
+      alt="{{ pokemon?.details?.name }}"
       class="poke__card--img"
     />
     <ul class="type">
       <li
-        *ngFor="let type of pokemon.details.types"
-        [ngStyle]="{ 'background-color': getTypeColor(type.type.name) }"
+        *ngFor="let type of pokemon?.details?.types"
+        [ngStyle]="{ 'background-color': getTypeColor(type?.type?.name) }"
       >
-        {{ type.type.name }}
+        {{ type?.type?.name }}
       </li>
     </ul>
   </a>

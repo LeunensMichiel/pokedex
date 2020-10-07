@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { Pokemon, Species, TYPE_COLOURS } from "../models/pokemon";
+import { switchMap } from "rxjs/operators";
+import { Pokemon, Species, TYPE_COLOURS, EvoChain } from "../models/pokemon";
 import { PokemonService } from "./../services/pokemon.service";
 
 @Component({
@@ -9,8 +10,10 @@ import { PokemonService } from "./../services/pokemon.service";
   styleUrls: ["./poke-detail.component.scss"],
 })
 export class PokeDetailComponent implements OnInit {
-  pokemon: Pokemon;
-  species: Species;
+  pokemon?: Pokemon;
+  species?: Species;
+  evolutionChain: EvoChain;
+  basePokemon: Pokemon;
 
   constructor(
     private route: ActivatedRoute,
@@ -18,28 +21,40 @@ export class PokeDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getSinglePokemon();
-    this.getPokemonSpecies();
+    this.route.params.subscribe((params) => {
+      const term = params["name"];
+      this.getSinglePokemon(term);
+      this.getPokemonSpecies(term);
+    });
   }
 
-  ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
-    console.log(this.species);
-  }
-
-  getSinglePokemon() {
-    const name = this.route.snapshot.paramMap.get("name");
+  getSinglePokemon(name: string) {
     this.pokeService
       .getSinglePokemon(name)
       .subscribe((pokemon) => (this.pokemon = pokemon));
   }
 
-  getPokemonSpecies() {
-    const name = this.route.snapshot.paramMap.get("name");
+  // getPokemonSpecies() {
+  //   const name = this.route.snapshot.paramMap.get("name");
+  //   this.pokeService
+  //     .getPokemonSpecies(name)
+  //     .subscribe((species) => (this.species = species));
+  // }
+
+  getEvolutionChain(id) {
     this.pokeService
-      .getPokemonSpecies(name)
-      .subscribe((species) => (this.species = species));
+      .getEvolutionChain(id)
+      .subscribe((evos) => (this.evolutionChain = evos));
+  }
+
+  getPokemonSpecies(name: string) {
+    this.pokeService
+      .getPokemonSpeciesWithEvolutionChainAndPokemon(name)
+      .subscribe((res) => {
+        this.species = res[0];
+        this.evolutionChain = res[1];
+        this.basePokemon = res[2];
+      });
   }
 
   getEnglishGenus() {

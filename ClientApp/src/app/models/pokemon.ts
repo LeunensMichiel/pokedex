@@ -46,24 +46,28 @@ export interface Pokemon {
 export interface Sprites {
   front_default: string;
   other: Images;
+  versions: Versions;
 }
 
 export interface Images {
-  "official-artwork": OfficialArtwork;
+  "official-artwork": FrontDefault;
 }
 
-export interface OfficialArtwork {
+export interface Versions {
+  "generation-vii": Game;
+}
+
+export interface Game {
+  ["ultra-sun-ultra-moon"]: FrontDefault;
+}
+
+export interface FrontDefault {
   front_default: string;
 }
 
 export interface Types {
   slot: number;
-  type: Type;
-}
-
-export interface Type {
-  name: string;
-  url: string;
+  type: NamedApiResource;
 }
 
 export interface Species {
@@ -71,14 +75,58 @@ export interface Species {
   name: string;
   id: number;
   genera: Genera[];
+  gender_rate: number;
+  capture_rate: number;
+  is_baby: boolean;
+  is_legendary: boolean;
+  hatch_counter: number;
+  evolution_chain: any;
 }
 
 export interface Genera {
   genus: string;
-  language: Language;
+  language: NamedApiResource;
 }
 
-export interface Language {
+export interface EvoChain {
+  id: number;
+  chain: Chain;
+}
+
+export interface Chain {
+  is_baby: boolean;
+  species: Specie;
+  evolves_to?: Chain[];
+}
+
+export interface Specie {
+  pokemon: Pokemon;
   name: string;
   url: string;
+}
+
+export interface NamedApiResource {
+  name: string;
+  url: string;
+}
+
+export interface EvoDetails {
+  gender: number;
+  held_item: NamedApiResource;
+  item: NamedApiResource;
+  known_move: NamedApiResource;
+  known_move_type: NamedApiResource;
+  location: NamedApiResource;
+  trigger: NamedApiResource;
+  min_level: number;
+  min_happiness: number;
+  min_beauty: number;
+  min_affection: number;
+  needs_overworld_rain: boolean;
+  party_species: NamedApiResource;
+  party_type: NamedApiResource;
+  relative_physical_stats: number;
+  time_of_day: string;
+  trade_species: NamedApiResource;
+  turn_upside_down: boolean;
 }

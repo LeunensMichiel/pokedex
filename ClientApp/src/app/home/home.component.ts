@@ -1,11 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import {
-  Pokemon,
-  Results,
-  PokeAPI,
-  Type,
-  TYPE_COLOURS,
-} from "../models/pokemon";
+import { Pokemon, Results, PokeAPI, TYPE_COLOURS } from "../models/pokemon";
 import { PokemonService } from "./../services/pokemon.service";
 
 @Component({
