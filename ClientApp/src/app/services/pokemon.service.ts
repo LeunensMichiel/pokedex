@@ -17,7 +17,7 @@ export class PokemonService {
 
   getAllPokemon() {
     return this.http
-      .get<PokeAPI>(`${this.pokeAPI}/pokemon/?limit=151`)
+      .get<PokeAPI>(`${this.pokeAPI}/pokemon/?limit=386`)
       .pipe(catchError(this._handleError));
   }
 

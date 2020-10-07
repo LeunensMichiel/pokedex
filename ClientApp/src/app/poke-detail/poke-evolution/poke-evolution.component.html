@@ -1,0 +1,45 @@
+<!-- <ng-container *ngIf="pokemon$ | async as pok">
+  <a
+    *ngFor="let pokemon of evolutions"
+    class="evo__item"
+    <!--
+    routerLink="/pokemon/{{ (pokemon$ | async)?.name }}"
+    --
+  >
+    >
+    <img
+      src="{{
+        pok.sprites.versions['generation-vii']['ultra-sun-ultra-moon']
+          .front_default
+      }}"
+      alt="{{ (pokemon$ | async)?.name }} in generation 7"
+    />
+    <div class="evo__item--nr">
+      #{{ ("0000" + (pokemon$ | async)?.id).slice(-3) }}
+    </div>
+    <div class="evo__item--name">{{ (pokemon$ | async)?.name }}</div>
+    <ul class="type">
+      <li
+        *ngFor="let type of (pokemon$ | async)?.types"
+        [ngStyle]="{ 'background-color': getTypeColor(type.type.name) }"
+      >
+        {{ type.type.name }}
+      </li>
+    </ul>
+    <app-poke-evolution
+      *ngIf="pokemon.evolves_to"
+      [evolutions]="pokemon.evolves_to"
+    >
+      <img src="/assets/images/chevron.svg" class="chevron" />
+    </app-poke-evolution>
+  </a>
+</ng-container> -->
+<ul>
+  <li *ngFor="let poke of evolutions">
+    <a routerLink="/pokemon/{{ poke.species.name }}">{{ poke.species.name }}</a>
+    <app-poke-evolution
+      *ngIf="poke.evolves_to"
+      [evolutions]="poke.evolves_to"
+    ></app-poke-evolution>
+  </li>
+</ul>

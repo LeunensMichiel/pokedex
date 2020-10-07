@@ -71,15 +71,14 @@ p {
     font-size: 14px;
     line-height: 16px;
     color: #3b3b3d;
-    ul {
-      justify-content: flex-start;
-      li {
-        margin-right: 4px;
-      }
-    }
   }
 }
-
+ul {
+  justify-content: flex-start;
+  li {
+    margin-right: 4px;
+  }
+}
 .evo__chain {
   width: 100%;
   background-color: #e3e3e8;
@@ -108,4 +107,8 @@ p {
     color: #545456;
     margin-bottom: 4px;
   }
+}
+
+.chevron {
+  margin: 18px 0;
 }

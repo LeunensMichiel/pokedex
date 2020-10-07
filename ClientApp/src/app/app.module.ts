@@ -10,6 +10,7 @@ import { HomeComponent } from "./home/home.component";
 import { SearchPipe } from "./pipes/search.pipe";
 import { SearchComponent } from "./search/search.component";
 import { PokeDetailComponent } from "./poke-detail/poke-detail.component";
+import { PokeEvolutionComponent } from './poke-detail/poke-evolution/poke-evolution.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { PokeDetailComponent } from "./poke-detail/poke-detail.component";
     SearchPipe,
     SearchComponent,
     PokeDetailComponent,
+    PokeEvolutionComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),

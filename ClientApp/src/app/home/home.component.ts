@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
     this.getPokemons();
   }
 
-  getPokemons(): void {
+  async getPokemons() {
     this.pokeService
       .getAllPokemon()
       .subscribe((data: PokeAPI) => {

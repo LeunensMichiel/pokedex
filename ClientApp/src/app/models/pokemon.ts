@@ -97,6 +97,7 @@ export interface Chain {
   is_baby: boolean;
   species: Specie;
   evolves_to?: Chain[];
+  evolution_details?: EvoDetails[];
 }
 
 export interface Specie {

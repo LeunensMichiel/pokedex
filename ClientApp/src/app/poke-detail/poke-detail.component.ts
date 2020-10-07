@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { switchMap } from "rxjs/operators";
-import { Pokemon, Species, TYPE_COLOURS, EvoChain } from "../models/pokemon";
+import { Pokemon, Species, TYPE_COLOURS, Chain } from "../models/pokemon";
 import { PokemonService } from "./../services/pokemon.service";
 
 @Component({
@@ -12,7 +11,7 @@ import { PokemonService } from "./../services/pokemon.service";
 export class PokeDetailComponent implements OnInit {
   pokemon?: Pokemon;
   species?: Species;
-  evolutionChain: EvoChain;
+  evolutionChain?: Chain;
   basePokemon: Pokemon;
 
   constructor(
@@ -34,25 +33,12 @@ export class PokeDetailComponent implements OnInit {
       .subscribe((pokemon) => (this.pokemon = pokemon));
   }
 
-  // getPokemonSpecies() {
-  //   const name = this.route.snapshot.paramMap.get("name");
-  //   this.pokeService
-  //     .getPokemonSpecies(name)
-  //     .subscribe((species) => (this.species = species));
-  // }
-
-  getEvolutionChain(id) {
-    this.pokeService
-      .getEvolutionChain(id)
-      .subscribe((evos) => (this.evolutionChain = evos));
-  }
-
   getPokemonSpecies(name: string) {
     this.pokeService
       .getPokemonSpeciesWithEvolutionChainAndPokemon(name)
       .subscribe((res) => {
         this.species = res[0];
-        this.evolutionChain = res[1];
+        this.evolutionChain = res[1].chain;
         this.basePokemon = res[2];
       });
   }
