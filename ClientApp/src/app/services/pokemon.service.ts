@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { forkJoin, throwError } from "rxjs";
-import { catchError, map, mergeMap, switchMap } from "rxjs/operators";
+import { catchError, switchMap } from "rxjs/operators";
 import { environment } from "./../../environments/environment";
 import { Pokemon, EvoChain, PokeAPI, Species } from "../models/pokemon";
 
@@ -17,7 +17,7 @@ export class PokemonService {
 
   getAllPokemon() {
     return this.http
-      .get<PokeAPI>(`${this.pokeAPI}/pokemon/?limit=386`)
+      .get<PokeAPI>(`${this.pokeAPI}/pokemon/?limit=151`)
       .pipe(catchError(this._handleError));
   }
 

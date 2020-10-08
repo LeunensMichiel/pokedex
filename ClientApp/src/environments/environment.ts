@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   pokemonURL: "https://pokeapi.co/api/v2",
+  apiUrl: "https://localhost:44341/api",
 };
 
 /*

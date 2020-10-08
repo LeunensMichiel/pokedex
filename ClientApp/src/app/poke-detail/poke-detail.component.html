@@ -1,4 +1,4 @@
-<div class="flex-container" *ngIf="pokemon">
+<div class="flex-container" *ngIf="pokemon !== undefined">
   <img
     class="artwork"
     src="{{ pokemon.sprites.other['official-artwork'].front_default }}"
@@ -6,7 +6,7 @@
   />
   <section class="flex-container-column">
     <h2>{{ pokemon.name }}</h2>
-    <p>The {{ getEnglishGenus().genus }}</p>
+    <p>The {{ getEnglishGenus() }}</p>
     <div class="dex__info">
       <table>
         <tr>
@@ -28,7 +28,7 @@
         </tr>
         <tr>
           <th>Species</th>
-          <td>{{ getEnglishGenus().genus }}</td>
+          <td>{{ getEnglishGenus() }}</td>
         </tr>
         <tr>
           <th>Height</th>
@@ -40,6 +40,7 @@
         </tr>
       </table>
     </div>
+    <button (click)="setCatch()">Catch</button>
   </section>
   <section class="evo__chain flex-container-column">
     <h3>Evolution Chain</h3>

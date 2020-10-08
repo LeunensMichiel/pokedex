@@ -7,8 +7,10 @@ namespace Pokédex.Model
 {
     public class Pokemon
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
+        public int NationalNo { get; set; }
         public string Name { get; set; }
-        public int Order { get; set; }
+        public bool IsCaught { get; set; }
+        public string Date { get; set; }
     }
 }
