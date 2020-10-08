@@ -1,5 +1,6 @@
 <section class="caught__container">
   <div *ngFor="let pokemon of caughtPokemon" class="pokemon--card">
     <h3>{{ pokemon.name }}</h3>
+    <p>Caught on: {{ pokemon.date | date: "medium" }}</p>
   </div>
 </section>

@@ -9,10 +9,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   width: 32%;
   background-color: #e3e3e8;
   padding: 12px;
   border-radius: 4px;
   margin-bottom: 12px;
   margin-right: 12px;
+}
+
+h3 {
+  font-size: 24px;
+  line-height: 16px;
+  color: #545456;
+  margin-bottom: 4px;
+}
+
+p {
+  color: #545456;
 }
